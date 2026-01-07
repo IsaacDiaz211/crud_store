@@ -1,4 +1,5 @@
 import { integer, sqliteTable, real } from "drizzle-orm/sqlite-core";
+import type { InferSelectModel, InferInsertModel } from "drizzle-orm";
 import { book } from "../books/book.schema";
 import { sale } from "./sale.schema";
 
@@ -10,3 +11,6 @@ export const detailSale = sqliteTable("detail_sales_table", {
   price_unity: real().notNull(),
   unities: integer({ mode: 'number' })
 });
+
+export type DetailSale = InferSelectModel<typeof detailSale>;
+export type NewDetailSale = InferInsertModel<typeof detailSale>;
