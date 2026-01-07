@@ -1,16 +1,16 @@
 import { integer, sqliteTable, real } from "drizzle-orm/sqlite-core";
 import type { InferSelectModel, InferInsertModel } from "drizzle-orm";
-import { book } from "../books/book.schema";
-import { sale } from "./sale.schema";
+import { books } from "../books/book.schema";
+import { sales } from "./sale.schema";
 
-export const detailSale = sqliteTable("detail_sales_table", {
+export const detailSales = sqliteTable("detail_sales_table", {
   id: integer({ mode: 'number' }).primaryKey({ autoIncrement: true }),
-  sale_id: integer({ mode: 'number' }).references(() => sale.id),
+  sale_id: integer({ mode: 'number' }).references(() => sales.id),
   amount_unity: real().notNull(),
-  book_id: integer({mode: 'number'}).references(() => book.id),
+  book_id: integer({mode: 'number'}).references(() => books.id),
   price_unity: real().notNull(),
   unities: integer({ mode: 'number' })
 });
 
-export type DetailSale = InferSelectModel<typeof detailSale>;
-export type NewDetailSale = InferInsertModel<typeof detailSale>;
+export type DetailSale = InferSelectModel<typeof detailSales>;
+export type NewDetailSale = InferInsertModel<typeof detailSales>;

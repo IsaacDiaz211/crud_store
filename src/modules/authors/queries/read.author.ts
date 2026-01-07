@@ -1,14 +1,14 @@
 import db from "../../../db/db";
 import { eq } from "drizzle-orm";
-import { author } from "../author.schema";
+import { authors } from "../author.schema";
 import type { Author } from "../author.schema"
 
 async function getAuthors(): Promise<Author[]> {
-    return await db.select().from(author);
+    return await db.select().from(authors);
 }
 
 async function getAuthor(id_author: number): Promise<Author | null> {
-    let response = await db.select().from(author).where(eq(author.id, id_author))
+    let response = await db.select().from(authors).where(eq(authors.id, id_author))
     return response[0];
 }
 

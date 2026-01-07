@@ -1,7 +1,7 @@
 import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
 import type { InferSelectModel, InferInsertModel } from "drizzle-orm";
 
-export const user = sqliteTable("users_table", {
+export const users = sqliteTable("users_table", {
   id: integer({mode: 'number'}).primaryKey({ autoIncrement: true }),
   name: text().notNull(),
   lastname: text().notNull(),
@@ -11,5 +11,5 @@ export const user = sqliteTable("users_table", {
   deleted: integer({mode: 'boolean'}).default(false)
 });
 
-export type User = InferSelectModel<typeof user>;
-export type NewUser = InferInsertModel<typeof user>;
+export type User = InferSelectModel<typeof users>;
+export type NewUser = InferInsertModel<typeof users>;
